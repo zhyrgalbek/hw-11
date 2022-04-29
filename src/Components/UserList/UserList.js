@@ -31,7 +31,7 @@ const UserList = props => {
                         <span>
                             {user.name} {user.age} years old 
                         </span>
-                        <DeleteUser id={user.id} handOverId={handOverId} deleteUser={handYes}  />
+                        <DeleteUser id={user.id} handOverId={handOverId}  />
                     </li>
                 ))}
             </ul>
