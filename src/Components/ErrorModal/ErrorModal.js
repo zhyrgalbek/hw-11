@@ -16,8 +16,8 @@ const ErrorModal = props => {
                <footer className={styles.actions}>
 
                 {props.onConfirm && <Button type="submit">okay</Button>}
-                
-                {props.handYes && props.handNo && <Card><Button onClick={props.handYes}>yes</Button><Button onClick={props.handNo}>No</Button></Card>} 
+
+                {props.handYes && props.handNo && <Card><Button onClick={props.handYes}>Да</Button><Button onClick={props.handNo}>Нет</Button></Card>} 
 
                </footer>
            </Card>
