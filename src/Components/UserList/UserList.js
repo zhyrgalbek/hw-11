@@ -1,37 +1,41 @@
 import Card from '../../UI/Card/Card';
 import styles from './UserList.module.css';
-import DeleteUser from '../DeleteUser/DeleterUser';
-import DeleterModal from '../deleteModal/DeleteModal';
 import {useState} from 'react';
+import Button from '../../UI/Button/Button';
+import ErrorModal from '../ErrorModal/ErrorModal';
 
 const UserList = props => {
-    const [isValidDelete, setIsValidDelete] = useState(false);
+    const [deleteText, setDeleteText] = useState(false);
     const [id, setId] = useState('');
+
     function handOverId(id){
-        setIsValidDelete(true);
+        setDeleteText({
+            title: 'Удаление пользователя!',
+            message: 'Вы хотите удалить пользователя?'
+        })
         setId(id);
     }
 
     function handYes(){
-        setIsValidDelete(false);
         props.getId(id);
+        setDeleteText(null)
     }
 
     function handNo(){
-        setIsValidDelete(false);
+        setDeleteText(null)
     }
 
 
     return (
         <Card className={styles.users}>
-            {isValidDelete ? <DeleterModal handYes={handYes} handNo={handNo} /> : ''}
+            {deleteText && <ErrorModal title={deleteText.title} message={deleteText.message} handYes={handYes} handNo={handNo} />}
             <ul>
                 {props.users.map(user => (
                     <li key={user.id}>
                         <span>
                             {user.name} {user.age} years old 
                         </span>
-                        <DeleteUser id={user.id} handOverId={handOverId}  />
+                        <Button onClick={()=>handOverId(user.id)}>delete</Button>
                     </li>
                 ))}
             </ul>

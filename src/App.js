@@ -8,17 +8,16 @@ function App() {
 
   const addUserHandler = (uName, uAge) => {
     setUserList((prevUserList) => {
-      return [...prevUserList, { name: uName, age: uAge, id: Math.random().toString() }]
+      return [...prevUserList, 
+              { name: uName, 
+                age: uAge, 
+                id: Math.random().toString() 
+              }]
     })
   }
 
   function getId(id){
-    let newUserList = userList.filter(elem=>{
-      if(elem.id !== id){
-        return elem;
-      }
-    })
-    setUserList(newUserList);
+    setUserList(prevUserList=>prevUserList.filter(elem=>elem.id !== id));
   }
 
   return (
